@@ -1,0 +1,80 @@
+<div class="dashboard" *ngIf="stats$ | async as stats">
+  <h1>Dashboard</h1>
+
+  <div class="stats-grid">
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon color="primary">work</mat-icon>
+        <mat-card-title>Total Applications</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ stats.total }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon style="color: #2196F3;">send</mat-icon>
+        <mat-card-title>Applied</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ stats.applied }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon style="color: #FF9800;">schedule</mat-icon>
+        <mat-card-title>Interviewing</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ stats.interviewing }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon style="color: #4CAF50;">check_circle</mat-icon>
+        <mat-card-title>Accepted</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ stats.accepted }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="upcoming-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>event</mat-icon>
+        Upcoming Interviews (Next 7 Days)
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="stats.upcomingInterviews.length === 0" class="no-interviews">
+        No upcoming interviews scheduled
+      </div>
+      <div *ngFor="let app of stats.upcomingInterviews" class="interview-item">
+        <div class="interview-info">
+          <strong>{{ app.company }}</strong> - {{ app.position }}
+          <br>
+          <small>{{ app.interviewDate | date:'fullDate' }} at {{ app.interviewDate | date:'shortTime' }}</small>
+        </div>
+        <mat-chip-set>
+          <mat-chip>{{ app.status }}</mat-chip>
+        </mat-chip-set>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" routerLink="/add">
+      <mat-icon>add</mat-icon>
+      Add New Application
+    </button>
+    <button mat-raised-button routerLink="/jobs">
+      <mat-icon>list</mat-icon>
+      View All Applications
+    </button>
+  </div>
+</div>

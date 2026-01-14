@@ -1,0 +1,44 @@
+mat-toolbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 64px;
+  padding: 0 24px;
+}
+
+mat-toolbar span:first-child {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  margin: 0 4px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.container {
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf0 100%);
+}
+
+mat-icon {
+  margin-right: 6px;
+}

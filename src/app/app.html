@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/dashboard" routerLinkActive="active">
+    <mat-icon>dashboard</mat-icon>
+    Dashboard
+  </button>
+  <button mat-button routerLink="/jobs" routerLinkActive="active">
+    <mat-icon>work</mat-icon>
+    Applications
+  </button>
+  <button mat-button routerLink="/calendar" routerLinkActive="active">
+    <mat-icon>calendar_today</mat-icon>
+    Calendar
+  </button>
+  <button mat-button routerLink="/add" routerLinkActive="active">
+    <mat-icon>add</mat-icon>
+    Add New
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,73 @@
+<div class="job-form">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ isEditMode ? 'Edit Application' : 'Add New Application' }}</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Company</mat-label>
+          <input matInput formControlName="company" placeholder="Google, Microsoft, etc.">
+          <mat-error *ngIf="jobForm.get('company')?.hasError('required')">
+            Company is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Position</mat-label>
+          <input matInput formControlName="position" placeholder="Software Engineer, etc.">
+          <mat-error *ngIf="jobForm.get('position')?.hasError('required')">
+            Position is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Applied Date</mat-label>
+          <input matInput [matDatepicker]="appliedPicker" formControlName="appliedDate">
+          <mat-datepicker-toggle matIconSuffix [for]="appliedPicker"></mat-datepicker-toggle>
+          <mat-datepicker #appliedPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Interview Date (Optional)</mat-label>
+          <input matInput [matDatepicker]="interviewPicker" formControlName="interviewDate">
+          <mat-datepicker-toggle matIconSuffix [for]="interviewPicker"></mat-datepicker-toggle>
+          <mat-datepicker #interviewPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Deadline (Optional)</mat-label>
+          <input matInput [matDatepicker]="deadlinePicker" formControlName="deadline">
+          <mat-datepicker-toggle matIconSuffix [for]="deadlinePicker"></mat-datepicker-toggle>
+          <mat-datepicker #deadlinePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Notes (Optional)</mat-label>
+          <textarea matInput formControlName="notes" rows="4" 
+                    placeholder="Add any additional notes..."></textarea>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button mat-raised-button type="button" (click)="onCancel()">
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!jobForm.valid">
+            {{ isEditMode ? 'Update' : 'Add' }} Application
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

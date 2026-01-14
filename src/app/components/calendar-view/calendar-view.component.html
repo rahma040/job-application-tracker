@@ -1,0 +1,43 @@
+<div class="calendar-view">
+  <h1>Interview & Deadline Calendar</h1>
+
+  <div class="calendar-container">
+    <mat-card>
+      <mat-card-content>
+        <full-calendar [options]="calendarOptions"></full-calendar>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="selectedEvent" class="event-details">
+      <mat-card-header>
+        <mat-card-title>Event Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Type:</strong> 
+          <mat-chip-set>
+            <mat-chip [highlighted]="true">{{ selectedEvent.type }}</mat-chip>
+          </mat-chip-set>
+        </p>
+        <p><strong>Company:</strong> {{ selectedEvent.company }}</p>
+        <p><strong>Position:</strong> {{ selectedEvent.position }}</p>
+        <p><strong>Date:</strong> {{ selectedEvent.date | date:'full' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="legend">
+    <mat-card>
+      <mat-card-content>
+        <h3>Legend</h3>
+        <div class="legend-item">
+          <span class="legend-color interview"></span>
+          <span>Interview</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color deadline"></span>
+          <span>Deadline</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
